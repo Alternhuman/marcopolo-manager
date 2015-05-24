@@ -1,0 +1,20 @@
+[Unit]
+Description=Core services management utility
+Requires=marco.service
+Requires=polo.service
+After=polo.service
+After=marco.service
+
+[Service]
+
+ExecStart=/opt/marcomanager/marcomanager.py &>/dev/null
+ExecStop=/opt/marcomanager/daemon/systemd/marcomanagerstop.py &>/dev/null
+ExecReload=/opt/marcomanager/daemon/systemd/marcomanagerreload.py &>/dev/null
+
+Type=simple
+User=root
+Group=root
+PIDFile=/var/run/marcopolo/marcomanager.pid
+
+[Install]
+WantedBy=multi-user.target
