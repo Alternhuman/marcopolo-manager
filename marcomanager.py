@@ -1,13 +1,14 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from abc import ABCMeta, abstractmethod
 import tornado.ioloop
 import signal
-import sys
-sys.path.append("/opt/marcopolo")
+import sys, os
+sys.path.append("/opt/marcopolo/")
 from bindings.polo import polo
 from bindings.marco import marco
-
+import conf
+import logging
 class MarcoManager(object):
 	__metaclass__ = ABCMeta
 
@@ -74,6 +75,7 @@ if __name__ == "__main__":
 	signal.signal(signal.SIGTERM, sigterm_handler)
 	signal.signal(signal.SIGUSR1, sigusr1_handler)
 	signal.signal(signal.SIGINT, sigterm_handler)
+	signal.signal(signal.SIGHUP, signal.SIG_IGN)
 
 	managers = [DemoManager()]
 
@@ -84,4 +86,15 @@ if __name__ == "__main__":
 		if r is not False:
 			tornado.ioloop.PeriodicCallback(manager.onReload, r).start()
 
+	pid = os.getpid()
+	if not os.path.exists(conf.RUNDIR):
+		os.makedirs(conf.RUNDIR)
+
+	f = open(os.path.join(conf.RUNDIR, conf.PIDFILE), 'w')
+	f.write(str(pid))
+	f.close()
+	
+	if not os.path.exists(conf.LOGDIR):
+		os.makedirs(conf.LOGDIR)
+	logging.basicConfig(filename=os.path.join(conf.LOGDIR, conf.LOGFILE), level=logging.DEBUG)	
 	io_loop.start()
