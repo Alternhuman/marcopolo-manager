@@ -7,6 +7,7 @@ import sys, os
 sys.path.append("/opt/marcopolo/")
 from bindings.polo import polo
 from bindings.marco import marco
+from marco_conf.utils import Node
 import conf
 import logging
 class MarcoManager(object):
@@ -30,19 +31,17 @@ class MarcoManager(object):
 
 class CompilerDiscover(MarcoManager):
 	def onSetup(self):
-		marco = marco.Marco()
-		nodes = marco.request_for("compiler")
+		self.marco = marco.Marco()
+		nodes = self.marco.request_for("compiler")
 		f = open('/etc/distcc/hosts', 'a')
 		for node in nodes:
-			f.write(node["Address"])
-
+			f.write(node.address[0])
 		f.close()
 	def onStop(self):
 		pass
 
 	def onReload(self):
-		marco = marco.Marco()
-		nodes = marco.request_for("compiler")
+		nodes = self.marco.request_for("compiler")
 		try:
 			f = open('/etc/distcc/hosts', 'w')
 			for node in nodes:
@@ -79,7 +78,7 @@ if __name__ == "__main__":
 	signal.signal(signal.SIGINT, sigterm_handler)
 	signal.signal(signal.SIGHUP, signal.SIG_IGN)
 
-	managers = [DemoManager()]
+	managers = [CompilerDiscover()]
 
 	io_loop = tornado.ioloop.IOLoop.instance()
 	for manager in managers:
