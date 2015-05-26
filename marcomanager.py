@@ -43,11 +43,13 @@ class CompilerDiscover(MarcoManager):
 	def onReload(self):
 		marco = marco.Marco()
 		nodes = marco.request_for("compiler")
-		f = open('/etc/distcc/hosts', 'w')
-		for node in nodes:
-			f.write(node["Address"])
-		f.close()
-
+		try:
+			f = open('/etc/distcc/hosts', 'w')
+			for node in nodes:
+				f.write(node["Address"])
+			f.close()
+		except FileNotFoundException:
+			pass
 	def doReload(self):
 		return 600	
 class DemoManager(MarcoManager):
