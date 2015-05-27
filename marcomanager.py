@@ -1,10 +1,15 @@
+from __future__ import absolute_import
 from abc import ABCMeta, abstractmethod
 from tornado.concurrent import return_future
 from concurrent.futures import ThreadPoolExecutor
+
 class MarcoManager(object):
 	__metaclass__ = ABCMeta
+	
+	__disable__ = False
+	
 	def __init__(self):
-		self.executor = ThreadPoolExecutor(max_workers=4)
+		self.executor = ThreadPoolExecutor(max_workers=1)
 	@abstractmethod
 	def onSetup(self):
 		pass
@@ -20,4 +25,4 @@ class MarcoManager(object):
 		pass
 	
 	def doReload(self):
-		return False
+		return 0

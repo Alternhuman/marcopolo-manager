@@ -2,8 +2,8 @@
 Description=Core services management utility
 Requires=marco.service
 Requires=polo.service
-After=polo.service
 After=marco.service
+After=polo.service
 
 [Service]
 

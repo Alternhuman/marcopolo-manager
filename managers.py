@@ -1,20 +1,18 @@
-import sys, os
+from __future__ import absolute_import
+import sys
 sys.path.append("/opt/marcopolo/")
 
-from marcomanager import MarcoManager
-from bindings.marco import marco
-from tornado import gen
-import time
 from tornado.concurrent import Future, run_on_executor
+
+from bindings.marco import marco
+from bindings.polo import polo
+
+from marcomanager import MarcoManager
+
 class CompilerDiscover(MarcoManager):
 	
-	#@gen.coroutine
 	@run_on_executor
 	def onSetup(self):
-		print("Hola")
-		for i in range(0, 2):
-			time.sleep(1)
-			print(i)
 		m = marco.Marco()
 		nodes = m.request_for("compiler")
 		f = open('/etc/distcc/hosts', 'a')
@@ -22,13 +20,13 @@ class CompilerDiscover(MarcoManager):
 			f.write(node["Address"])
 
 		f.close()
-		return "Discover"
-		#raise gen.Return(1)
+		return 0
+	
 	def onStop(self):
 		pass
 
 	def delay(self):
-		return 5
+		return 10
 
 	def onReload(self):
 		m = marco.Marco()
@@ -40,19 +38,48 @@ class CompilerDiscover(MarcoManager):
 			f.close()
 		except FileNotFoundException:
 			pass
+	
 	def doReload(self):
-		return 600
+		return 3600
 
-
-class DemoManager(MarcoManager):
+class HostnameManager(MarcoManager):
+	__disable__ = True
 	@run_on_executor
 	def onSetup(self):
-		print("Setup")
-		for i in range(30, 32):
-			time.sleep(1)
-			print(i)
+		import socket
+		hostname = socket.gethostname()
 
-		return("Demo")
+	def onStop(self):
+		pass
+
+	def onReload(self):
+		import socket
+		hostname = socket.gethostname()
+
+	def doReload(self):
+		return 3600
+
+class EnableTomcatManager(MarcoManager):
+	@run_on_executor
+	def onSetup(self):
+		pass
+
+	def onStop(self):
+		pass
+
+class EnableHadoopMaster(MarcoManager):
+	@run_on_executor
+	def onSetup(self):
+		pass
+
+	def onStop(self):
+		pass
+
+class DemoManager(MarcoManager):
+	__disable__ = True
+	@run_on_executor
+	def onSetup(self):
+		return 1
 
 	def delay(self):
 		return 5
@@ -62,4 +89,4 @@ class DemoManager(MarcoManager):
 	def onReload(self):
 		print("Reloading")
 	def doReload(self):
-		return False
+		return 0
