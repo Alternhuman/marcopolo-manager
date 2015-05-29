@@ -3,6 +3,8 @@
 from __future__ import absolute_import
 import signal, conf, logging
 import sys, os
+import inspect
+
 import tornado.ioloop
 import tornado.concurrent
 from managers import *
@@ -23,7 +25,7 @@ def sigusr1_handler(signum, frame):
     logging.info(u"Reloading runner")
     signal.signal(signal.SIGUSR1, sigusr1_handler)
 
-import inspect
+
 
 classes = []
 manager_instances = []
@@ -56,7 +58,6 @@ if __name__ == u"__main__":
     for manager in manager_instances:
         io_loop.call_later(manager.delay(), io_loop.add_future, manager.onSetup(), log)
         
-
         r = int(manager.doReload()) * 1000
         if r != False:
             tornado.ioloop.PeriodicCallback(manager.onReload, r).start()
