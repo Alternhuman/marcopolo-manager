@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-import sys
+import sys, logging, time
 sys.path.append("/opt/marcopolo/")
 
 from tornado.concurrent import Future, run_on_executor
@@ -25,12 +25,22 @@ class CompilerDiscover(MarcoManager):
 		with the *compiler* service. If successful, it dumps the results to the '/etc/distcc/hosts file'
 		"""
 		m = marco.Marco()
-		nodes = m.request_for("compiler")
-		f = open('/etc/distcc/hosts', 'a')
-		for node in nodes:
-			f.write(node["Address"])
+		while True:
+			try:
+				nodes = m.request_for("compiler")
+				break
+			except marco.MarcoTimeOutException:
 
-		f.close()
+				time.sleep(1)
+				print("Retrying")
+		try:
+			f = open('/etc/distcc/hosts', 'w')
+			for node in nodes:
+				f.write(node.address)
+				logging.info("Adding compiler %s", node.address)
+			f.close()
+		except Exception as e:
+			logging.warning("Something happened while executing CompilerDiscover: %s" % e)
 		return 0
 		#TODO: Use DISTCC_HOME
 	
@@ -52,14 +62,22 @@ class CompilerDiscover(MarcoManager):
 		the results to the hosts file.
 		"""
 		m = marco.Marco()
-		nodes = m.request_for("compiler")
+		while True:
+			try:
+				nodes = m.request_for("compiler")
+				break
+			except marco.MarcoTimeOutException:
+				time.sleep(1)
+				print("Retrying")
 		try:
 			f = open('/etc/distcc/hosts', 'w')
 			for node in nodes:
-				f.write(node["Address"])
+				f.write(node.address)
 			f.close()
 		except FileNotFoundException:
 			pass
+		except Exception as e:
+			logging.warning("Unexpected error %s" % e)
 	
 	def doReload(self):
 		"""
@@ -90,6 +108,7 @@ class HostnameManager(MarcoManager):
 		return 3600
 
 class EnableTomcatManager(MarcoManager):
+	__disable__ = True
 	@run_on_executor
 	def onSetup(self):
 		pass
@@ -98,6 +117,7 @@ class EnableTomcatManager(MarcoManager):
 		pass
 
 class EnableHadoopMaster(MarcoManager):
+	__disable__ = True
 	@run_on_executor
 	def onSetup(self):
 		pass

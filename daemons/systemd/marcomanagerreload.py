@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os, signal
 PIDFILE='/var/run/marcopolo/marcomanager.pid'
 
 try:
 	f = open (PIDFILE, 'r')
 	pid = f.read()
 	f.close()
-	kill(int(pid), signal.SIGUSR1)
-	os.remove(PIDFILE)
+	os.kill(int(pid), signal.SIGUSR1)
 except FileNotFoundError as e:
-	pass
+	print(e)

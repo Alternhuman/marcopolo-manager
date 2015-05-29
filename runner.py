@@ -26,7 +26,6 @@ def sigusr1_handler(signum, frame):
     signal.signal(signal.SIGUSR1, sigusr1_handler)
 
 
-
 classes = []
 manager_instances = []
 names = []
@@ -37,7 +36,7 @@ for name, obj in [(name, obj) for name, obj in \
     classes.append(obj)
     names.append(name)
 
-logging.info(u"Starting runner with the services %s" % u', '.join(names))
+
 
 def log(future):
     result = future.result()
@@ -73,5 +72,6 @@ if __name__ == u"__main__":
     if not os.path.exists(conf.LOGDIR):
         os.makedirs(conf.LOGDIR)
     logging.basicConfig(filename=os.path.join(conf.LOGDIR, conf.LOGFILE),\
-     level=logging.DEBUG)  
+     level=logging.DEBUG)
+    logging.info(u"Starting runner with the services %s" % u', '.join(names))
     io_loop.start()

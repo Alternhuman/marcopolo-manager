@@ -1,15 +1,15 @@
 [Unit]
-Description=Core services management utility
-Requires=marco.service
-Requires=polo.service
+Description=MarcoPolo core services management utility
+#Requires=marco.service
+#Requires=polo.service
 After=marco.service
 After=polo.service
 
 [Service]
 
-ExecStart=/opt/marcomanager/marcomanager.py &>/dev/null
-ExecStop=/opt/marcomanager/daemon/systemd/marcomanagerstop.py &>/dev/null
-ExecReload=/opt/marcomanager/daemon/systemd/marcomanagerreload.py &>/dev/null
+ExecStart=/opt/marcomanager/runner.py &>/dev/null
+ExecStop=/opt/marcomanager/daemons/systemd/marcomanagerstop.py &>/dev/null
+ExecReload=/opt/marcomanager/daemons/systemd/marcomanagerreload.py &>/dev/null
 
 Type=simple
 User=root
