@@ -4,15 +4,14 @@ sys.path.append("/opt/marcopolo/")
 
 from tornado.concurrent import Future, run_on_executor
 
-from bindings.marco import marco
-from bindings.polo import polo
+from marcopolo.bindings import marco, polo
 
 from marcomanager import MarcoManager
 
 class CompilerDiscover(MarcoManager):
 	"""
 	Uses `MarcoPolo <file:///home/martin/TFG/workspaces/discovery/doc/build/html/index.html>`_ 
-	through the  :class:`Marco python binding<bindings.marco.marco.Marco>` to
+	through the  :class:`Marco python binding<marcopolo.bindings.marco.Marco>` to
 	discover the available `distcc <https://code.google.com/p/distcc/>`_ compilers on the network.
 	If successful, it modifies the `/etc/distcc/hosts` with the results.
 
@@ -21,7 +20,7 @@ class CompilerDiscover(MarcoManager):
 	@run_on_executor
 	def onSetup(self):
 		"""
-		Sends a :py:meth:`Request_for<bindings.marco.marco.Marco.request_for>` message asking for nodes
+		Sends a :py:meth:`Request_for<marcopolo.bindings.marco.Marco.request_for>` message asking for nodes
 		with the *compiler* service. If successful, it dumps the results to the '/etc/distcc/hosts file'
 		"""
 		m = marco.Marco()
