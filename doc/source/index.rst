@@ -26,6 +26,7 @@ Contents:
    The MarcoManager class <marcomanager>
    The Runner class <runner>
    Examples <managers>
+   software_engineering/intro
 
 
 Indices and tables
