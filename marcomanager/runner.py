@@ -8,21 +8,18 @@ import inspect
 import tornado.ioloop
 import tornado.concurrent
 
-
-
-#from marcomanager.managers import *
 from marcomanager import conf
 from marcomanager.marcomanager import MarcoManager
 
-os.path.insert(0, conf.MANAGERS_DIR)
-from managers.managers import *
+sys.path.insert(0, conf.MANAGERS_DIR)
+from managers import *
 
 io_loop = tornado.ioloop.IOLoop.instance()
 
 def sigterm_handler(signum, frame):
     for manager in manager_instances:
         manager.onStop()
-    logging.info(u"Stopping runner")
+    logging.info("Stopping runner")
     io_loop.stop()
     sys.exit(0)
 
@@ -30,7 +27,7 @@ def sigusr1_handler(signum, frame):
     signal.signal(signal.SIGUSR1, signal.SIG_IGN)
     for manager in manager_instances:
         manager.onReload()
-    logging.info(u"Reloading runner")
+    logging.info("Reloading runner")
     signal.signal(signal.SIGUSR1, sigusr1_handler)
 
 
@@ -40,7 +37,7 @@ names = []
 for name, obj in [(name, obj) for name, obj in \
     inspect.getmembers(sys.modules[__name__]) \
     if issubclass(obj.__class__, MarcoManager.__class__) \
-    and name not in [u"Future", u"ABCMeta", u"MarcoManager"]]:
+    and name not in ["Future", "ABCMeta", "MarcoManager"]]:
     classes.append(obj)
     names.append(name)
 
@@ -59,7 +56,7 @@ def main(argv=None):
     signal.signal(signal.SIGTERM, sigterm_handler)
     signal.signal(signal.SIGUSR1, sigusr1_handler)
     signal.signal(signal.SIGINT, sigterm_handler)
-    signal.signal(signal.SIGHUP, signal.SIG_IGN)
+    #signal.signal(signal.SIGHUP, signal.SIG_IGN)
     
     for manager in manager_instances:
         if manager.enable():
@@ -72,22 +69,22 @@ def main(argv=None):
             if doReload != False:
                 tornado.ioloop.PeriodicCallback(manager.onReload, doReload).start()
 
-    #pid = os.getpid()
-    #if not os.path.exists(conf.RUNDIR):
-    #    os.makedirs(conf.RUNDIR)
+    pid = os.getpid()
+    if not os.path.exists(conf.RUNDIR):
+        os.makedirs(conf.RUNDIR)
 
-    #f = open(os.path.join(conf.RUNDIR, conf.PIDFILE), 'w')
-    #f.write(str(pid))
-    #f.close()
+    f = open(os.path.join(conf.RUNDIR, conf.PIDFILE), 'w')
+    f.write(str(pid))
+    f.close()
     
     if not os.path.exists(conf.LOGDIR):
         os.makedirs(conf.LOGDIR)
     logging.basicConfig(filename=os.path.join(conf.LOGDIR, conf.LOGFILE),
                         level=logging.DEBUG)
     
-    logging.info(u"Starting runner with the services %s" % u', '.join(names))
+    logging.info("Starting runner with the services %s" % u', '.join(names))
     
     io_loop.start()
 
-if __name__ == u"__main__":
+if __name__ == "__main__":
     main(sys.argv[1:])

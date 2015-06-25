@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 
 import os, signal, sys
+from marcomanager import conf
 
 def main(argv=None):
-    PIDFILE='/var/run/marcomanager.pid'
+    PIDFILE=os.path.join(conf.RUNDIR, conf.PIDFILE)
 
     try:
         f = open (PIDFILE, 'r')

@@ -38,7 +38,7 @@ def start_service(service):
     if init_bin == 0:
         subprocess.call(["systemctl", "start", service], shell=False)
     else:
-        subprocess.call(["update-rc.d", service, "start"], shell=False)
+        subprocess.call(["service", service, "start"], shell=False)
 
     sys.stdout.write("Started!")
 
@@ -55,7 +55,9 @@ if __name__ == "__main__":
         long_description = description_f.read()
 
     data_files = [
-                  ('/etc/marcomanager/managers/', ["etc/marcomanagers/managers/manager.py"])
+                  ('/etc/marcomanager/', [os.path.join(here, "etc/marcomanager/__init__.py")]),
+                  ('/etc/marcomanager/managers/', [os.path.join(here, "etc/marcomanager/managers/managers.py"),
+                                                   os.path.join(here, "etc/marcomanager/managers/__init__.py")])
                  ]
 
     if "--marcomanager-disable-daemons" not in marcomanager_params:
