@@ -1,20 +1,17 @@
 [Unit]
 Description=MarcoPolo core services management utility
-#Requires=marco.service
-#Requires=polo.service
 After=marco.service
 After=polo.service
 
 [Service]
 
-ExecStart=/opt/marcomanager/runner.py &>/dev/null
-ExecStop=/opt/marcomanager/daemons/systemd/marcomanagerstop.py &>/dev/null
-ExecReload=/opt/marcomanager/daemons/systemd/marcomanagerreload.py &>/dev/null
+ExecStart=marcomanagerd &>/dev/null
+ExecReload=marcomanagerreload &>/dev/null
 
 Type=simple
 User=root
 Group=root
-PIDFile=/var/run/marcopolo/marcomanager.pid
+PIDFile=/var/run/marcomanagerd.pid
 
 [Install]
 WantedBy=multi-user.target
