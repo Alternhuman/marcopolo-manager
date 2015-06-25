@@ -17,7 +17,11 @@ class MarcoManager(object):
         self.executor = ThreadPoolExecutor(max_workers=1)
     
     def enable(self):
-        return False
+        """
+        Returns a boolean that indicates whether the unit must be enabled or not.
+        By default it enabled.
+        """
+        return True
 
     @abstractmethod
     def onSetup(self):
@@ -27,6 +31,9 @@ class MarcoManager(object):
         the main code, so it is safe to execute blocking actions without blocking the whole IOLoop.
         The method is called immediately after the daemon is started
         or when the specified delay is passed.
+
+        **Important**: Due to the nature of the Tornado IOLoop, the @run_on_executor decorator
+        must be used in this function
         """
         pass
 

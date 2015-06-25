@@ -17,6 +17,9 @@ from managers import *
 io_loop = tornado.ioloop.IOLoop.instance()
 
 def sigterm_handler(signum, frame):
+    """
+    Triggers the onStop event and then stops the IOLoop
+    """
     for manager in manager_instances:
         manager.onStop()
     logging.info("Stopping runner")
@@ -24,6 +27,9 @@ def sigterm_handler(signum, frame):
     sys.exit(0)
 
 def sigusr1_handler(signum, frame):
+    """
+    Handles the USR1 signal, used for reloading the services
+    """
     signal.signal(signal.SIGUSR1, signal.SIG_IGN)
     for manager in manager_instances:
         manager.onReload()
@@ -44,12 +50,19 @@ for name, obj in [(name, obj) for name, obj in \
 
 
 def log(future):
+    """
+    Gets the result of a future and logs it.
+    """
     result = future.result()
     if result is not None:
         logging.info(future.result())
 
 
 def main(argv=None):  
+    """
+    Starts the daemon and service units.
+    Initializes the runfile and logs and then starts the IOLoop
+    """
     for manager_instance in [m for m in classes if m.__disable__ == False]:
         manager_instances.append(manager_instance())
 

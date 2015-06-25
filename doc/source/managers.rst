@@ -1,7 +1,7 @@
 Managers
 ========
 
-The managers are defined as a Python class which inherits from :class:`MarcoManager<marcomanager.MarcoManager>`. 
+The managers are defined as a Python class which inherits from :class:`MarcoManager<marcomanager.marcomanager.MarcoManager>`. 
 
 .. code-block:: python
 	:caption: An example of a Manager

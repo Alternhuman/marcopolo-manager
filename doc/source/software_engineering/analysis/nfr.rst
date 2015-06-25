@@ -30,6 +30,7 @@ Requisitos no funcionales
 - **Estado**: Completo
 - **Estabilidad**: Estable
 - **Comentarios**: 
+
 .. 
     - **Versión**: 
     - **Autores**: 

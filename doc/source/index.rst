@@ -23,9 +23,11 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   Examples <managers>
+   installation
+   usage
    The MarcoManager class <marcomanager>
    The Runner class <runner>
-   Examples <managers>
    software_engineering/intro
 
 

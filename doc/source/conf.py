@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # marcomanager documentation build configuration file, created by
@@ -16,9 +16,10 @@
 import sys
 import os
 import shlex
-sys.path.append("/home/martin/TFG/workspaces/marcomanager/")
 
-from marcomanager import MarcoManager
+sys.path.insert(0, '/etc/marcomanager/managers/')
+
+#from marcomanager.marcomanager import MarcoManager
 #print(dir(MarcoManager))
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
