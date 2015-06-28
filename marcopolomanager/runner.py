@@ -8,8 +8,8 @@ import inspect
 import tornado.ioloop
 import tornado.concurrent
 
-from marcomanager import conf
-from marcomanager.marcomanager import MarcoManager
+from marcopolomanager import conf
+from marcopolomanager.marcopolomanager import MarcoPoloManager
 
 sys.path.insert(0, conf.MANAGERS_DIR)
 from managers import *
@@ -42,8 +42,8 @@ manager_instances = []
 names = []
 for name, obj in [(name, obj) for name, obj in \
     inspect.getmembers(sys.modules[__name__]) \
-    if issubclass(obj.__class__, MarcoManager.__class__) \
-    and name not in ["Future", "ABCMeta", "MarcoManager"]]:
+    if issubclass(obj.__class__, MarcoPoloManager.__class__) \
+    and name not in ["Future", "ABCMeta", "MarcoPoloManager"]]:
     classes.append(obj)
     names.append(name)
 
@@ -82,13 +82,13 @@ def main(argv=None):
             if doReload != False:
                 tornado.ioloop.PeriodicCallback(manager.onReload, doReload).start()
 
-    pid = os.getpid()
-    if not os.path.exists(conf.RUNDIR):
-        os.makedirs(conf.RUNDIR)
+    #pid = os.getpid()
+    #if not os.path.exists(conf.RUNDIR):
+    #    os.makedirs(conf.RUNDIR)
 
-    f = open(os.path.join(conf.RUNDIR, conf.PIDFILE), 'w')
-    f.write(str(pid))
-    f.close()
+    #f = open(os.path.join(conf.RUNDIR, conf.PIDFILE), 'w')
+    #f.write(str(pid))
+    #f.close()
     
     if not os.path.exists(conf.LOGDIR):
         os.makedirs(conf.LOGDIR)

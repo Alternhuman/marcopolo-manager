@@ -10,8 +10,8 @@ from distutils.command.install import install
 import os, sys
 import subprocess
 
-custom_marcomanager_params = [
-                            "--marcomanager-disable-daemons",
+custom_marcopolomanager_params = [
+                            "--marcopolomanager-disable-daemons",
                              ]
 
 def detect_init():
@@ -44,9 +44,9 @@ def start_service(service):
 
 if __name__ == "__main__":
     
-    marcomanager_params = [param for param in sys.argv if param in custom_marcomanager_params]
+    marcopolomanager_params = [param for param in sys.argv if param in custom_marcopolomanager_params]
     
-    sys.argv = list(set(sys.argv) - set(marcomanager_params))
+    sys.argv = [param for param in sys.argv if param not in marcopolomanager_params]
 
     python_version = int(sys.version[0])
 
@@ -55,28 +55,28 @@ if __name__ == "__main__":
         long_description = description_f.read()
 
     data_files = [
-                  ('/etc/marcomanager/', [os.path.join(here, "etc/marcomanager/__init__.py")]),
-                  ('/etc/marcomanager/managers/', [os.path.join(here, "etc/marcomanager/managers/managers.py"),
-                                                   os.path.join(here, "etc/marcomanager/managers/__init__.py")])
+                  ('/etc/marcopolomanager/', [os.path.join(here, "etc/marcopolomanager/__init__.py")]),
+                  ('/etc/marcopolomanager/managers/', [os.path.join(here, "etc/marcopolomanager/managers/managers.py"),
+                                                   os.path.join(here, "etc/marcopolomanager/managers/__init__.py")])
                  ]
 
-    if "--marcomanager-disable-daemons" not in marcomanager_params:
+    if "--marcopolomanager-disable-daemons" not in marcopolomanager_params:
         
 
         if init_bin == 1:
             daemon_files = [
-                         ('/etc/init.d/', ["daemons/systemv/marcomanagerd"])
+                         ('/etc/init.d/', ["daemons/systemv/marcopolomanagerd"])
                        ]
         else:
-            daemon_files = [('/etc/systemd/system/',["daemons/systemd/marcomanager.service"])]
+            daemon_files = [('/etc/systemd/system/',["daemons/systemd/marcopolomanager.service"])]
 
         data_files.extend(daemon_files)
 
     
     setup(
-        name="marcomanager",
-        provides=["marcomanager"],
-        version='0.0.1',
+        name="marcopolo-manager",
+        provides=["marcopolomanager"],
+        version='0.0.6',
         description="A task scheduler with MarcoPolo integration",
         long_description=long_description,
         url="marcopolo.martinarroyo.net",
@@ -86,32 +86,34 @@ if __name__ == "__main__":
         classifiers=[
             'Development Status :: 3 - Alpha',
 
-            'Intended Audience :: Developers',
+            'Programming Language :: Python :: 2.7',
+            'Programming Language :: Python :: 3.4','Development Status :: 3 - Alpha',
+
+            'Intended Audience :: System Administrators',
 
             'Topic :: Software Development :: Build Tools',
+            'Topic :: System :: Networking',
+            'License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)',
 
-            'License :: OSI Approved :: MIT License',
-
-            'Programming Language :: Python :: 2.7',
-            'Programming Language :: Python :: 3.4',
+            'Natural Language :: English',
 
         ],
 
-        keywords="marcomanager task scheduler",
+        keywords="marcopolomanager task scheduler",
         packages=find_packages(),
         install_requires=["marcopolo",
                           "tornado==4.1",
-                          "futures",
+                          "futures==3.0.3",
                           "certifi==2015.4.28"],
         zip_safe=False,
         data_files=data_files,
         entry_points={
-            'console_scripts':["marcomanagerd = marcomanager.runner:main",
-                                "marcomanagerreload = marcomanager.marcomanagerreload:main"
+            'console_scripts':["marcopolomanagerd = marcopolomanager.runner:main",
+                                "marcopolomanagerreload = marcopolomanager.marcopolomanagerreload:main"
                               ]
         }
     )
-    
-    if "--marcomanager-disable-daemons" not in marcomanager_params:
-        enable_service("marcomanagerd")
-        start_service("marcomanagerd")
+    if "install" in sys.argv:    
+        if "--marcopolomanager-disable-daemons" not in marcopolomanager_params:
+            enable_service("marcopolomanagerd")
+            start_service("marcopolomanagerd")

@@ -1,12 +1,12 @@
 [Unit]
 Description=MarcoPolo core services management utility
-After=marco.service
-After=polo.service
+After=marcod.service
+After=polod.service
 
 [Service]
 
-ExecStart=marcomanagerd &>/dev/null
-ExecReload=marcomanagerreload &>/dev/null
+ExecStart=/usr/bin/marcopolomanagerd &>/dev/null
+ExecReload=/usr/bin/marcopolomanagerreload &>/dev/null
 
 Type=simple
 User=root

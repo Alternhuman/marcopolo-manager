@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os, signal, sys
-from marcomanager import conf
+from marcopolomanager import conf
 
 def main(argv=None):
     PIDFILE=os.path.join(conf.RUNDIR, conf.PIDFILE)

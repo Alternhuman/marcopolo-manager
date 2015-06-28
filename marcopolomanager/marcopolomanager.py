@@ -3,7 +3,7 @@ from __future__ import absolute_import
 from abc import ABCMeta, abstractmethod
 from concurrent.futures import ThreadPoolExecutor
 
-class MarcoManager(object):
+class MarcoPoloManager(object):
     """
     Abstract class which defines all the available functionality.
     Some methods are concrete, since they have a default 

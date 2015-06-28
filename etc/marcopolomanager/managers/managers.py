@@ -6,9 +6,9 @@ from tornado.concurrent import Future, run_on_executor
 
 from marcopolo.bindings import marco, polo
 
-from marcomanager.marcomanager import MarcoManager
+from marcopolomanager.marcopolomanager import MarcoPoloManager
 
-class CompilerDiscover(MarcoManager):
+class CompilerDiscover(MarcoPoloManager):
     """
     Uses `MarcoPolo <file:///home/martin/TFG/workspaces/discovery/doc/build/html/index.html>`_ 
     through the  :class:`Marco python binding<marcopolo.bindings.marco.Marco>` to
@@ -84,7 +84,7 @@ class CompilerDiscover(MarcoManager):
         """
         return 3600
 
-class HostnameManager(MarcoManager):
+class HostnameManager(MarcoPoloManager):
     """
     Includes hostname information in marcopolo
     """
@@ -106,7 +106,7 @@ class HostnameManager(MarcoManager):
     def doReload(self):
         return 3600
 
-class EnableTomcatManager(MarcoManager):
+class EnableTomcatManager(MarcoPoloManager):
     __disable__ = True
     @run_on_executor
     def onSetup(self):
@@ -115,7 +115,7 @@ class EnableTomcatManager(MarcoManager):
     def onStop(self):
         pass
 
-class EnableHadoopMaster(MarcoManager):
+class EnableHadoopMaster(MarcoPoloManager):
     __disable__ = True
     @run_on_executor
     def onSetup(self):
