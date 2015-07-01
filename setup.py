@@ -55,7 +55,7 @@ if __name__ == "__main__":
         long_description = description_f.read()
 
     data_files = [
-                  ('/etc/marcopolomanager/', [os.path.join(here, "etc/marcopolomanager/__init__.py")]),
+                  ('/etc/marcopolomanager/', ["etc/marcopolomanager/marcopolomanager.cfg", os.path.join(here, "etc/marcopolomanager/__init__.py")]),
                   ('/etc/marcopolomanager/managers/', [os.path.join(here, "etc/marcopolomanager/managers/managers.py"),
                                                    os.path.join(here, "etc/marcopolomanager/managers/__init__.py")])
                  ]

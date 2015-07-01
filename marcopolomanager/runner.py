@@ -81,19 +81,11 @@ def main(argv=None):
             doReload = int(manager.doReload()) * 1000
             if doReload != False:
                 tornado.ioloop.PeriodicCallback(manager.onReload, doReload).start()
-
-    #pid = os.getpid()
-    #if not os.path.exists(conf.RUNDIR):
-    #    os.makedirs(conf.RUNDIR)
-
-    #f = open(os.path.join(conf.RUNDIR, conf.PIDFILE), 'w')
-    #f.write(str(pid))
-    #f.close()
     
     if not os.path.exists(conf.LOGDIR):
         os.makedirs(conf.LOGDIR)
     logging.basicConfig(filename=os.path.join(conf.LOGDIR, conf.LOGFILE),
-                        level=logging.DEBUG)
+                        level=conf.DEBUG_LEVEL)
     
     logging.info("Starting runner with the services %s" % u', '.join(names))
     

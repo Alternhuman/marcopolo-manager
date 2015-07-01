@@ -1,7 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os, signal, sys
+import os
+import signal
+import sys
+import logging
+
 from marcopolomanager import conf
 
 def main(argv=None):
@@ -13,7 +17,7 @@ def main(argv=None):
         f.close()
         os.kill(int(pid), signal.SIGUSR1)
     except Exception as e:
-        print(e)
+        logging.error(e)
 
 if __name__ == "__main__":
     main(sys.argv[1:])

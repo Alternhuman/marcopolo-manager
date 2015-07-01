@@ -21,7 +21,7 @@ Alternatively it is possible to download the full package from the repository or
 	
 	python setup.py install
 
-Please note that root access may be necessary.
+Please note that root access may be necessary depending on your setup.
 
 The script installs the following files:
 
