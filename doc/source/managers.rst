@@ -1,5 +1,5 @@
-Managers
-========
+Examples of managers
+====================
 
 The managers are defined as a Python class which inherits from :class:`MarcoManager<marcomanager.marcomanager.MarcoManager>`. 
 

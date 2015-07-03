@@ -8,4 +8,5 @@ En esta sección se detallan todos los aspectos relevantes sobre el paquete *sof
 
     analysis/intro
     design/intro
+    project_mgmt/intro
 

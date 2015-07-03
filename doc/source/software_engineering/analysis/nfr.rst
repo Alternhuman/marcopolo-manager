@@ -1,8 +1,8 @@
 Requisitos no funcionales
 =========================
 
-**NRF1** Integración transparente con **systemd** e **initd**
--------------------------------------------------------------
+NFR1 Integración transparente con **systemd** e **initd**
+---------------------------------------------------------
 
 - **Versión**: 
 - **Autores**: 
@@ -16,8 +16,8 @@ Requisitos no funcionales
 - **Estabilidad**: Estable
 - **Comentarios**: 
   
-**NFR2** Tornado
-----------------
+NFR2 Tornado
+------------
 
 - **Versión**: 
 - **Autores**: 
@@ -25,6 +25,21 @@ Requisitos no funcionales
 - **Objetivos asociados**: OBJ2
 - **Requisitos asociados**: 
 - **Descripción**: Se aprovechará el bucle de eventos de Tornado :class:`IOLoop<tornado.ioloop.IOLoop>` para la programación de los diferentes eventos, con el objetivo de optimizar el rendimiento del sistema.
+- **Importancia**: Baja
+- **Urgencia**: Baja
+- **Estado**: Completo
+- **Estabilidad**: Estable
+- **Comentarios**: 
+
+NFR3 Compatibilidad con systemd e initd
+---------------------------------------
+
+- **Versión**: 
+- **Autores**: 
+- **Fuentes**: 
+- **Objetivos asociados**:
+- **Requisitos asociados**: 
+- **Descripción**: Debido a que el gestor deberá integrarse en diferentes sistemas operativos, se deberá implementar el *daemon* de forma que sea gestionable con systemd e initd.
 - **Importancia**: Baja
 - **Urgencia**: Baja
 - **Estado**: Completo

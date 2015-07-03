@@ -300,6 +300,6 @@ texinfo_documents = [
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'python': ('https://docs.python.org/3', None), 
                     'tornado': ('http://www.tornadoweb.org/en/stable/', None),
-                    'marcopolo': ('file:///home/martin/TFG/workspaces/discovery/doc/build/html/', None)}
+                    'marcopolo': ('file:///home/martin/TFG/workspaces/discovery/marcopolo-doc/build/html/', None)}
 
 #rst_prolog = ".. |marcopolourl| replace:: `MarcoPolo <file:///home/martin/TFG/workspaces/discovery/doc/build/html/>`_"

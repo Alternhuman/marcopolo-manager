@@ -21,14 +21,14 @@ MarcoManager runs as a daemon (both on systemd- and SysV-based systems) and it i
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+    :maxdepth: 2
 
-   Examples <managers>
-   installation
-   usage
-   The MarcoManager class <marcomanager>
-   The Runner class <runner>
-   software_engineering/intro
+    installation
+    managers
+    usage
+    The MarcoManager class <marcomanager>
+    The Runner class <runner>
+    software_engineering/intro
 
 
 Indices and tables

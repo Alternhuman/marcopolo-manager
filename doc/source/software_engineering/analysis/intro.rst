@@ -1,5 +1,5 @@
-Análisis
-========
+Fase de análisis
+================
 
 .. toctree::
     :maxdepth: 2
@@ -8,16 +8,8 @@ Análisis
     goals
     actors
     ir
-    fr
+    fr  
     uc
     nfr
     static
-    interaction
-    state
     activity
-    web
-..    dynamic
-..  
-    actors
-..    
-    fr

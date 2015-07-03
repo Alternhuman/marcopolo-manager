@@ -13,7 +13,7 @@ ACT-1: Administrador
 - **Descripción**: Es el encargado humano de definir el comportamiento de cada una de las unidades de gestión que configurarán un servicio.
 - **Comentarios**
 
-ACT-2: Manager
+ACT-2: Gestor
 --------------
 
 - **Versión**
@@ -28,8 +28,16 @@ ACT-3: Aplicación
 - **Versión**
 - **Autores**
 - **Fuentes**
-- **Descripción**: Representa a una aplicación que es configurada a través de la aplicación. 
+- **Descripción**: Representa a una aplicación que es configurada a través de la aplicación, por lo que realiza una interacción pasiva con el paquete software.
 - **Comentarios**
+
+
+Diagrama de actores
+-------------------
+
+.. figure:: ../img/actors.*
+	:align: center
+	
 
 ..     
     - **Versión**

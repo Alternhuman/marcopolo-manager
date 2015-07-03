@@ -1,5 +1,5 @@
 Vista estática
 ==============
 
-.. image:: ../img/design_marcomanager.*
+.. figure:: ../img/design_marcomanager.*
     :align: center

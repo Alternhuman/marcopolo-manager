@@ -61,21 +61,33 @@ RF 3: Detención
 - **Fuentes**: 
 - **Objetivos asociados**: 
 - **Requisitos asociados**: 
-- **Descripción**
-- **Precondición**
-- **Secuencia normal**
-- **Poscondición**
-- **Excepciones**
+- **Descripción**: El gestor permitirá a las diferentes unidades la ejecución de una acción destinada a la liberación de recursos, eliminar servicios publicados o cualquier otra tarea vinculada con la finalización de la ejecución del servicio antes de que el gestor sea detenido. 
+- **Precondición**: El gestor debe encontrarse activado.
+- **Secuencia normal**:
+
+    1. A petición del Administrador o ante un evento de finalización (por ejemplo, el apagado del sistema), el gestor detectará esta condición.
+    2. Se recorrerá la lista de servicios, invocando el método de finalización dispuesto a tal efecto.
+    3. Cada uno de los servicios realizará la acción que el Administrador determinó para esta situación.
+    4. Los diferentes servicios finalizan, y con ellos el gestor.
+- **Poscondición**: El gestor y sus servicios se han detenido.
+- **Excepciones**:
+
+    + En caso de que la detención se realice de forma "brusca" (interrupción inesperada) no se ejecutará esta acción de limpieza.
 - **Rendimiento**
-- **Frecuencia**
-- **Importancia**
-- **Urgencia**
-- **Estado**
-- **Estabilidad**
-- **Comentarios**
+- **Frecuencia**: Se espera que la frecuencia del caso de uso sea pequeña, dado que esta acción está destinada a un evento de apagado.
+- **Importancia**: Media
+- **Urgencia**: Media
+- **Estado**: Completo
+- **Estabilidad**: Estable
 
+Vista de casos de uso
+---------------------
 
-.. Detención
+.. toctree::
+    :maxdepth: 2
+
+    uc
+
 .. 
     - **Versión**: 
     - **Autores**: 
