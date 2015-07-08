@@ -9,8 +9,8 @@ CONF_DIR = '/etc/marcopolomanager'
 RUNDIR = '/var/run/'
 LOGDIR = '/var/log/marcopolo'
 
-PIDFILE = 'marcomanagerd.pid'
-LOGFILE = 'marcomanagerd.log'
+PIDFILE = 'marcopolomanagerd.pid'
+LOGFILE = 'marcopolomanagerd.log'
 
 DEBUG_LEVEL = 'DEBUG'
 
@@ -39,7 +39,7 @@ try:
 		PIDFILE = PIDFILE if isabs(PIDFILE) else join(RUNDIR, PIDFILE)
 
 		LOGFILE = config.get('marcopolomanager', 'LOGFILE')
-		LOGFILE = LOGFILE if isabs(LOGFILE) else join(RUNDIR, LOGFILE)
+		LOGFILE = LOGFILE if isabs(LOGFILE) else join(LOGDIR, LOGFILE)
 		DEBUG_LEVEL = config.get('marcopolomanager', 'DEBUG_LEVEL').upper()
 		MANAGERS_DIR = config.get('marcopolomanager', 'MANAGERS_DIR')
 except IOError as i:

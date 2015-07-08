@@ -1,5 +1,16 @@
 #!/usr/bin/env python
+"""
+Using an IOLoop instance all the onSetup jobs on loading are executed 
+and the the onReload functionality is scheduled.
 
+By default, the runner loads all the MarcoManager-inherited classes defined 
+in the modules inside the ``/etc/marcopolomanager/managers`` directory.
+To include other file, just import it in the runner.py file or modify the path in the 
+configuration file.
+
+The runner uses standard UNIX signals to reload the application and gracefully stop
+ all the managers using SIGUSR1 to schedule functionality.
+"""
 from __future__ import absolute_import
 import signal, logging
 import sys, os
@@ -84,6 +95,7 @@ def main(argv=None):
     
     if not os.path.exists(conf.LOGDIR):
         os.makedirs(conf.LOGDIR)
+    
     logging.basicConfig(filename=os.path.join(conf.LOGDIR, conf.LOGFILE),
                         level=conf.DEBUG_LEVEL)
     

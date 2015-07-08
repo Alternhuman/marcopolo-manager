@@ -16,9 +16,9 @@
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
-NAME="marcomanagerd"
+NAME="marcopolomanagerd"
 DESC="The marcopolo management tool"
-DAEMON=$(which marcomanagerd)
+DAEMON=$(which marcopolomanagerd)
 
 PIDFILE=/var/run/${NAME}.pid
 DAEMON_OPTS=
@@ -41,7 +41,7 @@ fi
 
 start_service() {
   echo -n " * Starting $NAME... "
-  start-stop-daemon -Sq -p $PIDFILE -x $DAEMON --make-pidfile -- $DAEMON_OPTS &> /dev/null
+  start-stop-daemon -Sq -p $PIDFILE --make-pidfile -x $DAEMON -- $DAEMON_OPTS &> /dev/null
   e=$?
   if [ $e -eq 1 ]; then
     echo "already running"
@@ -59,7 +59,7 @@ start_service() {
 stop_service() {
   echo -n " * Stopping $NAME... "
   #start-stop-daemon -Kq -R 10 -p $PIDFILE &>/dev/null
-  start-stop-daemon --stop --quiet --retry=TERM/30/KILL/5 --pidfile $PIDFILE --name $NAME
+  start-stop-daemon --stop --quiet --pidfile $PIDFILE --retry=TERM/30/KILL/5 --exec $NAME
   e=$?
   if [ $e -eq 1 ]; then
     echo "not running"

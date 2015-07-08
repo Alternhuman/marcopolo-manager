@@ -84,6 +84,9 @@ class CompilerDiscover(MarcoPoloManager):
         """
         return 3600
 
+    def enable(self):
+        return False
+
 class HostnameManager(MarcoPoloManager):
     """
     Includes hostname information in marcopolo
@@ -105,6 +108,8 @@ class HostnameManager(MarcoPoloManager):
 
     def doReload(self):
         return 3600
+    def enable(self):
+        return False
 
 class EnableTomcatManager(MarcoPoloManager):
     __disable__ = True
@@ -114,7 +119,8 @@ class EnableTomcatManager(MarcoPoloManager):
 
     def onStop(self):
         pass
-
+    def enable(self):
+        return False
 class EnableHadoopMaster(MarcoPoloManager):
     __disable__ = True
     @run_on_executor
@@ -123,4 +129,5 @@ class EnableHadoopMaster(MarcoPoloManager):
 
     def onStop(self):
         pass
-
+    def enable(self):
+        return False

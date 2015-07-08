@@ -72,11 +72,18 @@ if __name__ == "__main__":
 
         data_files.extend(daemon_files)
 
-    
+    install_requires = ["marcopolo>=0.1.0",
+                        "tornado>=4.1",
+                        "certifi>=2015.4.28"
+                       ]
+
+    if python_version == 2:
+        install_requires.append("futures>=3.0.3")
+
     setup(
         name="marcopolo-manager",
         provides=["marcopolomanager"],
-        version='0.0.6',
+        version='0.1.1',
         description="A task scheduler with MarcoPolo integration",
         long_description=long_description,
         url="marcopolo.martinarroyo.net",
@@ -101,10 +108,7 @@ if __name__ == "__main__":
 
         keywords="marcopolomanager task scheduler",
         packages=find_packages(),
-        install_requires=["marcopolo",
-                          "tornado==4.1",
-                          "futures==3.0.3",
-                          "certifi==2015.4.28"],
+        install_requires=install_requires,
         zip_safe=False,
         data_files=data_files,
         entry_points={
