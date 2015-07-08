@@ -4,6 +4,8 @@ Requisitos de información
 IRQ-1: Puntos temporales de ejecución
 -------------------------------------
 
+- **Versión**
+- **Autores**
 - **Fuentes**
 - **Objetivos asociados**: OBJ2
 - **Requisitos asociados**: 
@@ -20,6 +22,8 @@ IRQ-1: Puntos temporales de ejecución
 IRQ-2: Unidades de gestión
 --------------------------
 
+- **Versión**
+- **Autores**
 - **Fuentes**
 - **Objetivos asociados**:
 - **Requisitos asociados**: 
@@ -34,15 +38,17 @@ IRQ-2: Unidades de gestión
 - **Comentarios**: Se contempla la posibilidad de que todas las unidades de gestión se almacenen en el mismo fichero.
 
 .. 
+    - **Versión**
+    - **Autores**
     - **Fuentes**
-    - **Objetivos asociados**:
-    - **Requisitos asociados**: 
-    - **Descripción**:
-    - **Datos específicos**: 
-    - **Tiempo de vida**:
-    - **Ocurrencias simultáneas**:
-    - **Importancia**:
-    - **Urgencia**: 
-    - **Estado**: 
-    - **Estabilidad**: 
-    - **Comentarios**: 
+    - **Objetivos asociados**
+    - **Requisitos asociados**
+    - **Descripción**
+    - **Datos específicos**
+    - **Tiempo de vida**
+    - **Ocurrencias simultáneas**
+    - **Importancia**
+    - **Urgencia**
+    - **Estado**
+    - **Estabilidad**
+    - **Comentarios**

@@ -1,12 +1,12 @@
 Installation
 ============
 
-The installation of the package is quite simple and can be accomplished with very little or any manual configuration.
+The installation of the package is quite simple and can be accomplished with very little or no manual configuration.
 
 pip
 ---
 
-Issuing the following command will install all the required files:
+Issuing the following command will install all required files:
 
 ::
 
@@ -15,7 +15,7 @@ Issuing the following command will install all the required files:
 setuptools
 ----------
 
-Alternatively it is possible to download the full package from the repository or pip and install it using the following command:
+Alternatively it is possible to download the full package from the git repository or pip and install it using the following command:
 
 ::
 	

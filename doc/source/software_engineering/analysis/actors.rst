@@ -7,30 +7,26 @@ Se contemplan los siguientes actores. Únicamente existirá un actor humano, dad
 ACT-1: Administrador
 --------------------
 
-- **Versión**
-- **Autores**
-- **Fuentes**
+- **Versión**: 1
+- **Autores**: Diego Martín
+- **Fuentes**: Análisis preliminar
 - **Descripción**: Es el encargado humano de definir el comportamiento de cada una de las unidades de gestión que configurarán un servicio.
-- **Comentarios**
 
 ACT-2: Gestor
 --------------
 
-- **Versión**
-- **Autores**
-- **Fuentes**
+- **Versión**: 1
+- **Autores**: Diego Martín
+- **Fuentes**: Análisis preliminar
 - **Descripción**: Se encarga de la ejecución de todas las unidades de gestión definidas por el actor Administrador.
-- **Comentarios**
 
 ACT-3: Aplicación
 -----------------
 
-- **Versión**
-- **Autores**
-- **Fuentes**
+- **Versión**: 1
+- **Autores**: Diego Martín
+- **Fuentes**: Análisis preliminar
 - **Descripción**: Representa a una aplicación que es configurada a través de la aplicación, por lo que realiza una interacción pasiva con el paquete software.
-- **Comentarios**
-
 
 Diagrama de actores
 -------------------

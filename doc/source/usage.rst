@@ -19,6 +19,10 @@ The package is intented to be run as a system daemon, and works in both ``initd`
 
     # Stop service
     service marcomanagerd stop
-    systemctl  stopmarcomanagerd
+    systemctl stop marcomanagerd
+
+    # Reload service
+    service marcomanagerd reload
+    systemctl reload marcomanagerd
 
     # And so on...

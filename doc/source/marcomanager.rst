@@ -3,6 +3,6 @@
 MarcoManager
 ============
 
-.. autoclass:: marcomanager.marcomanager.MarcoManager
+.. autoclass:: marcopolomanager.marcopolomanager.MarcoPoloManager
 	:members:
 	:show-inheritance:
