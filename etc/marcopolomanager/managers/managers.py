@@ -41,7 +41,6 @@ class CompilerDiscover(MarcoPoloManager):
         except Exception as e:
             logging.warning("Something happened while executing CompilerDiscover: %s" % e)
         return 0
-        #TODO: Use DISTCC_HOME
     
     def onStop(self):
         """

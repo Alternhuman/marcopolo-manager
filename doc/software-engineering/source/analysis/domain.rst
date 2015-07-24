@@ -1,0 +1,4 @@
+Dominio del problema
+====================
+
+Debido a la naturaleza de los ofertantes de servicios (código fuente no accesible o difícil de modificar, naturaleza inherente de la aplicación), existen aplicaciones que no pueden implementar ninguno de los mecanismos de interconexión con MarcoPolo creados (como son los diferentes *bindings* o las aplicaciones de consola), y por tanto no pueden realizar operaciones de descubrimiento o publicación de servicios, lo cual limita su integración en el sistema. Con el objetivo de posibilitar esta tarea se plantea la creación de un "gestor" que se encargue de la publicación de estos servicios o configuración de los mismos en el contexto del sistema (mediante la detección de diferentes nodos) aprovechando la funcionalidad de MarcoPolo.
